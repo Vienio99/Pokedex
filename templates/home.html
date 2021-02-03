@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Hello on Pokedex app!</h1>
+
+{% for id, information in info.items %}
+    <p>#00{{ id }}</p>
+    <p>{{ information.name | capfirst }}</p>
+    <p>{{ information.desc }}</p>
+{% endfor %}
+
+{% endblock content %}
