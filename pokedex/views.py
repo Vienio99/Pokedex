@@ -18,6 +18,7 @@ def home(request):
         info[i] = {}
 
         info[i]['name'] = result['name']
+        info[i]['img'] = f'/img/official-artwork/{i}.png'
 
         species_url = result['species']['url']
 

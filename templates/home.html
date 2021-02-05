@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block content %}
 <h1>Hello on Pokedex app!</h1>
@@ -8,6 +9,7 @@
     <p>#00{{ id }}</p>
     <p>{{ information.name | capfirst }}</p>
     <p>{{ information.desc }}</p>
+    <img src="{% static information.img %}" width=10% height=10%>
 {% endfor %}
 
 {% endblock content %}
