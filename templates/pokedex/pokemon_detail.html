@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h1>Hello on Pokedex app!</h1>
+
+    <div class="pokemon-detail">
+        <p>#00{{ pokemon.id }}</p>
+        <h2>{{ pokemon.name | capfirst }}</h2>
+        <p>{{ pokemon.category_1 }} {{ pokemon.category_2 }}</p>
+        <p>{{ pokemon.description }}</p>
+        <img src="{% static pokemon.img %}" width=10% height=10%>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

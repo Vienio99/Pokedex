@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
+
 {% block content %}
+
 <h1>Hello on Pokedex app!</h1>
 
-{% for id, information in info.items %}
-    <p>#00{{ id }}</p>
-    <p>{{ information.name | capfirst }}</p>
-    <p>{{ information.desc }}</p>
-    <img src="{% static information.img %}" width=10% height=10%>
-{% endfor %}
+    <div class="pokemon-info">
+        {% for pokemon in pokemons_data %}
+            <p>#00{{ pokemon.id }}</p>
+            <h2><a href="{% url 'pokemon_detail' pokemon.id %}">{{ pokemon.name | capfirst }}</a></h2>
+            <p>{{ pokemon.description }}</p>
+            <img src="{% static pokemon.img %}" width=10% height=10%>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock content %}
