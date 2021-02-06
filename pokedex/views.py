@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 from django.views.generic import ListView, DetailView
 from .models import Pokemon
+from django.db.models import Q
 
 # Create your views here.
 
@@ -14,7 +15,22 @@ class PokemonListView(ListView):
 class PokemonDetailView(DetailView):
     template_name = 'pokemon_detail.html'
     model = Pokemon
-    
+
+class SearchResultView(ListView):
+    model = Pokemon
+    template_name = 'search_results.html'
+    context_object_name = 'search_results'
+
+    def get_queryset(self):
+        if self.request.GET.get('q'):
+            query = self.request.GET.get('q')
+            search_results = Pokemon.objects.filter(
+                Q(name__icontains=query) | Q(category_1__icontains=query) | Q(category_2__icontains=query)
+            )
+            return search_results
+        else:
+            message = 'You submitted nothing!'
+            return message
 
 
 

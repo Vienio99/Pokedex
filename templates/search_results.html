@@ -6,21 +6,18 @@
 
 <h1>Hello on Pokedex app!</h1>
 
-    <form action="{% url 'search_results' %}" method="get">
-        <input name="q" type="text" placeholder="Search...">
-    </form>
-    {% if message %}
-        {{ message }}
-    {% endif %}
-
     <div class="pokemon-info">
-        {% for pokemon in pokemons_data %}
+        {% for pokemon in search_results %}
             <p>#00{{ pokemon.id }}</p>
             <h2><a href="{% url 'pokemon_detail' pokemon.id %}">{{ pokemon.name | capfirst }}</a></h2>
             <p>{{ pokemon.description }}</p>
             <img src="{% static pokemon.img %}" width=10% height=10%>
         {% endfor %}
     </div>
+
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+    </form>
 
 
 
