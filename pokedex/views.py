@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 import requests
 from django.views.generic import ListView, DetailView
 from .models import Pokemon
@@ -11,17 +12,11 @@ class PokemonListView(ListView):
     template_name = 'home.html'
     model = Pokemon
     context_object_name = 'pokemons_data'
-
-class PokemonDetailView(DetailView):
-    template_name = 'pokemon_detail.html'
-    model = Pokemon
-
-class SearchResultView(ListView):
-    model = Pokemon
-    template_name = 'search_results.html'
-    context_object_name = 'search_results'
+    paginate_by = 10
 
     def get_queryset(self):
+        print(type(self.request.GET.get('q')))
+        
         if self.request.GET.get('q'):
             query = self.request.GET.get('q')
             search_results = Pokemon.objects.filter(
@@ -29,8 +24,13 @@ class SearchResultView(ListView):
             )
             return search_results
         else:
-            message = 'You submitted nothing!'
-            return message
+            return Pokemon.objects.all()
+
+
+
+class PokemonDetailView(DetailView):
+    template_name = 'pokemon_detail.html'
+    model = Pokemon
 
 
 
