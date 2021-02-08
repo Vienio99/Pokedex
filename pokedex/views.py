@@ -14,8 +14,15 @@ class PokemonListView(ListView):
     context_object_name = 'pokemons_data'
     paginate_by = 10
 
+
+
+class SearchResultsView(ListView):
+    template_name = 'search_results.html'
+    model = Pokemon
+    context_object_name = 'search_results'
+    paginate_by = 5
+
     def get_queryset(self):
-        print(type(self.request.GET.get('q')))
         
         if self.request.GET.get('q'):
             query = self.request.GET.get('q')
@@ -23,8 +30,9 @@ class PokemonListView(ListView):
                 Q(name__icontains=query) | Q(category_1__icontains=query) | Q(category_2__icontains=query)
             )
             return search_results
-        else:
-            return Pokemon.objects.all()
+        # else:
+        #     search_results = Pokemon.objects.all()
+        #     return search_results
 
 
 

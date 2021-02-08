@@ -8,8 +8,8 @@
 
     <div class="pokemon-detail">
         <p>#00{{ pokemon.id }}</p>
-        <h2>{{ pokemon.name | capfirst }}</h2>
-        <p>{{ pokemon.category_1 }} {{ pokemon.category_2 }}</p>
+        <h2>{{ pokemon.name | title }}</h2>
+        <p>{{ pokemon.category_1 | title }} {{ pokemon.category_2 | title }}</p>
         <p>{{ pokemon.description }}</p>
         <img src="{% static pokemon.img %}" width=10% height=10%>
     </div>
