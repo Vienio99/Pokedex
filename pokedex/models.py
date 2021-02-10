@@ -16,6 +16,9 @@ class Pokemon(models.Model):
     height = models.IntegerField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['id']
+
 
     def __str__(self):
         return self.name
