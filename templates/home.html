@@ -7,7 +7,7 @@
 <h1>Hello on Pokedex app!</h1>
     <!-- Search form -->
     <form action="{% url 'search_results' %}" method="get">
-        <input name="q" type="text" placeholder="Search...">
+        <input name="q" type="text" placeholder="Search..." id="search">
     </form>
 
 
@@ -25,11 +25,13 @@
             {% endif %}
             <!-- Pokemons list -->
             <span class="current">
-                <div class="pokemon-info">
+                <div class="pokemons-list">
                     {% for pokemon in pokemons_data %}
-                        <p>#00{{ pokemon.id }}</p>
-                        <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
-                        <a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a>
+                        <div class="pokemon-info">
+                            <p>#00{{ pokemon.id }}</p>
+                            <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
+                            <a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a>
+                        </div>
                     {% endfor %}
                 </div>
             </span>
