@@ -26,11 +26,13 @@
             <!-- Pokemons list -->
             {% if search_results %}
                 <span class="current">
-                    <div class="pokemon-info">
+                    <div class="pokemon-list">
                         {% for pokemon in search_results %}
+                        <div class="pokemon-info">
                             <p>#00{{ pokemon.id }}</p>
-                            <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
+                            <h2 class="pokemon-name"><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
                             <a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a>
+                        </div>
                         {% endfor %}
                     </div>
                 </span>

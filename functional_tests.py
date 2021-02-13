@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import unittest
+from selenium.webdriver.common.by import By
 
 class NewVisitorTest(unittest.TestCase):
 
@@ -25,16 +26,46 @@ class NewVisitorTest(unittest.TestCase):
             'Search...'
         )
 
-        search_box.send_keys('water')
+        search_input = 'water'
+        search_box.send_keys(search_input)
 
         search_box.send_keys(Keys.ENTER)
 
-        pokemons_number_on_page = len(self.browser.find_elements_by_class_name('pokemon-info'))
+        time.sleep(1)
+
+        pokemons_number_on_search_results_page = len(self.browser.find_elements_by_class_name('pokemon-info'))
+
         self.assertEqual(
-            pokemons_number_on_page,
+            pokemons_number_on_search_results_page,
             10
         )
+
+        first_pokemon_name_on_search_results_page = self.browser.find_elements_by_class_name('pokemon-name')[0].text
+
+
+        self.assertEqual(
+            first_pokemon_name_on_search_results_page,
+            'Squirtle'
+        )
+
+        current_url = self.browser.current_url
+        self.assertEqual(
+            current_url,
+            f'http://127.0.0.1:8000/pokedex/search/?q={search_input}'
+        )
+
+        next_button = self.browser.find_element(By.XPATH, "//*[text()='next']")
+        next_button.click()
+
+        next_page_url = self.browser.current_url
+        self.assertEqual(
+            next_page_url,
+            f'http://127.0.0.1:8000/pokedex/search/?page=2&q={search_input}'
+        )
+
         time.sleep(3)
+        
+
 
 
 

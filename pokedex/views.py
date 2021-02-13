@@ -20,7 +20,7 @@ class SearchResultsView(ListView):
     template_name = 'search_results.html'
     model = Pokemon
     context_object_name = 'search_results'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         
