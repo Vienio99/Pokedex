@@ -1,3 +1,5 @@
 /sprites/
 /static/img/official-artwork/
 geckodriver.log
+__pycache__
+*.pyc

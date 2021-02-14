@@ -3,8 +3,9 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 from selenium.webdriver.common.by import By
+from django.test import LiveServerTestCase
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox() 
@@ -65,9 +66,3 @@ class NewVisitorTest(unittest.TestCase):
 
         time.sleep(3)
         
-
-
-
-
-if __name__ == '__main__':  
-    unittest.main()
