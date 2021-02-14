@@ -20,8 +20,6 @@ class HomePageTest(TestCase):
         self.assertIn('Hello on Pokedex app!', html)
         self.assertEqual(response.status_code, 200)
 
-    def test_pokemons_number_on_home_page(self):
-        response = self.client.get('/pokedex/')
 
 
 
