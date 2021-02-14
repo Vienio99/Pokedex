@@ -2,11 +2,11 @@ import requests
 import re
 # For parsing pokemon data from external API
 
-def pokemon_parser(number):
+def pokemon_parser(start, end):
 
     info = {}
 
-    for i in range(21, number):
+    for i in range(start, end):
         
         #Getting general pokemon info
         client = requests.get(f'https://pokeapi.co/api/v2/pokemon/{i}/')
@@ -48,12 +48,11 @@ def pokemon_parser(number):
         info[i]['desc'] = info[i]['desc'].replace('\x0c', ' ')
         info[i]['desc'] = info[i]['desc'].replace('\u000c', ' ')
 
-        print(info[i]['desc'])
+    return info
         
 
-pokemon_parser(22)
-
-
+if __name__ == "__main__":
+    pokemon_parser()
     
 
 
