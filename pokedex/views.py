@@ -4,6 +4,7 @@ import requests
 from django.views.generic import ListView, DetailView
 from .models import Pokemon
 from django.db.models import Q
+from utils.pokemon_parser import pokemon_parser
 
 # Create your views here.
 
@@ -13,6 +14,10 @@ class PokemonListView(ListView):
     model = Pokemon
     context_object_name = 'pokemons_data'
     paginate_by = 10
+
+    def get_queryset(self):
+        pokemons_data = pokemon_parser(1, 500)
+        return Pokemon.objects.all()
 
 
 
