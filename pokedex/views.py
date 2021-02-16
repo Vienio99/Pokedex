@@ -15,10 +15,6 @@ class PokemonListView(ListView):
     context_object_name = 'pokemons_data'
     paginate_by = 10
 
-    def get_queryset(self):
-        pokemons_data = pokemon_parser(1, 500)
-        return Pokemon.objects.all()
-
 
 
 class SearchResultsView(ListView):
