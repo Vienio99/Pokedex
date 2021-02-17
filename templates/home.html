@@ -28,8 +28,8 @@
                 <div class="pokemons-list">
                     {% for pokemon in pokemons_data %}
                         <div class="pokemon-info">
-                            <p>#00{{ pokemon.id }}</p>
                             <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
+                            <p>#00{{ pokemon.id }}</p>
                             <a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a>
                         </div>
                     {% endfor %}
