@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -16,12 +17,19 @@ class Pokemon(models.Model):
     height = models.IntegerField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
 
+    slug = models.SlugField(null=True, unique=True)
+
     class Meta:
         ordering = ['id']
-
 
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
-        return(reverse('pokemon_detail', args=[str(self.id)]))
+        return reverse('pokemon_detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
+    

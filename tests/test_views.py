@@ -24,11 +24,11 @@ class HomePageTest(TestCase):
 class DetailPageTest(TestCase):
     
     def setUp(self):
-        Pokemon.objects.create(name="Bulbasaur", category_1="grass", id=1)
-        Pokemon.objects.create(name="Squirtle", category_1="water", id=2)
+        Pokemon.objects.create(name="Bulbasaur", category_1="grass", slug='bulbasaur')
+        Pokemon.objects.create(name="Squirtle", category_1="water", slug='squirtle')
 
     def test_detail_view_uses_proper_template(self):
-        response = self.client.get('/pokedex/pokemon/1/')
+        response = self.client.get('/pokedex/pokemon/bulbasaur/')
 
         self.assertEqual(response.status_code, 200)
 
@@ -39,6 +39,12 @@ class DetailPageTest(TestCase):
         self.assertIn('Hello on Pokedex app!', html)
         self.assertIn('Bulbasaur', html)
         self.assertIn('Grass', html)
+
+    def test_detail_view_uses_slugs(self):
+        response = self.client.get('/pokedex/pokemon/squirtle/')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/pokedex/pokemon/1/')
+        self.assertEqual(response.status_code, 404)
 
 class SearchResultsPageTest(TestCase):
 
