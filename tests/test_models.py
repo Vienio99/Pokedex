@@ -1,8 +1,9 @@
 from django.test import TestCase
 from pokedex.models import Pokemon
+from django.contrib.auth import get_user_model
 
 
-class PokemonFieldsTest(TestCase):
+class PokemonModelTest(TestCase):
     
     def setUp(self):
         Pokemon.objects.create(name="Bulbasaur", category_1="grass")
@@ -22,3 +23,18 @@ class PokemonFieldsTest(TestCase):
         pokemon = Pokemon.objects.get(name='Squirtle')
         self.assertNotEqual(pokemon.img, '/img/official-artwork/1.png')
         self.assertEqual(pokemon.img, '/img/official-artwork/2.png')
+
+
+
+
+User = get_user_model()
+class CustomUserModelTest(TestCase):
+
+    def setUp(self):
+        User.objects.create(username='test', password='test12345', age='15')
+    
+    def test_user_information(self):
+        user = User.objects.get(username='test')
+        self.assertEqual(user.username, 'test')
+        self.assertNotEqual(user.username, 'tesst')
+        self.assertEqual(user.age, 15)

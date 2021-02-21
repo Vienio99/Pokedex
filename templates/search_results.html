@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Search results - Pokedex app{% endblock title %}
 
 {% block content %}
 
-<h1>Hello on Pokedex app!</h1>
     <!-- Search form -->
     <form action="{% url 'search_results' %}" method="get">
         <input name="q" type="text" placeholder="Search...">

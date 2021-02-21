@@ -10,6 +10,8 @@ class HomePageTest(TestCase):
         response = self.client.get('/pokedex/')
         self.assertEqual(response.status_code, 200)
 
+    
+
     def test_root_url_redirect_to_pokedex_url(self):
         response = self.client.get('/')
         self.assertRedirects(response, '/pokedex/')
@@ -23,6 +25,12 @@ class HomePageTest(TestCase):
         self.assertTemplateUsed(response, 'home.html')
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Hello on Pokedex app!', html)
+        self.assertIn('<title>Pokedex app</title>', html)
+    
+    def test_home_view_authentication_links_redirect_properly(self):
+        response = self.client.get('/pokedex/')
+
+        self.assertRedirects()
 
 class DetailPageTest(TestCase):
     
@@ -43,6 +51,7 @@ class DetailPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Hello on Pokedex app!', html)
         self.assertIn('Bulbasaur', html)
+        self.assertIn('<title>Pokemon detail - Pokedex app</title>', html)
 
     def test_detail_view_uses_slugs(self):
         response = self.client.get('/pokedex/pokemon/squirtle/')
@@ -70,6 +79,7 @@ class SearchResultsPageTest(TestCase):
         self.assertIn('Hello on Pokedex app!', html)
         self.assertIn('Squirtle', html)
         self.assertNotIn('Bulbasaur', html)
+        self.assertIn('<title>Search results - Pokedex app</title>', html)
 
 
 

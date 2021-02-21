@@ -1,15 +1,28 @@
 <!doctype html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-  <title>Pokedex app</title>
+    <title>{% block title %}Pokedex app{% endblock title %}</title>
+  </head>
 
-</head>
+  <body>
+    <header>
+      <h1>Hello on Pokedex app!</h1>
+      {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+      {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
+    </header>
 
-<body>
-    {% block content %}
-    {% endblock content %}
-</body>
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </body>
 </html>
