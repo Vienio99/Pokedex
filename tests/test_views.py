@@ -6,6 +6,10 @@ from django.urls import reverse
 
 class HomePageTest(TestCase):
 
+    def test_home_page_status_code(self):
+        response = self.client.get('/pokedex/')
+        self.assertEqual(response.status_code, 200)
+
     def test_root_url_redirect_to_pokedex_url(self):
         response = self.client.get('/')
         self.assertRedirects(response, '/pokedex/')
@@ -19,18 +23,19 @@ class HomePageTest(TestCase):
         self.assertTemplateUsed(response, 'home.html')
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Hello on Pokedex app!', html)
-        self.assertEqual(response.status_code, 200)
 
 class DetailPageTest(TestCase):
     
     def setUp(self):
         Pokemon.objects.create(name="Bulbasaur", category_1="grass", slug='bulbasaur')
         Pokemon.objects.create(name="Squirtle", category_1="water", slug='squirtle')
+    
+    def test_detail_page_status_code(self):
+        response = self.client.get('/pokedex/pokemon/bulbasaur/')
+        self.assertEqual(response.status_code, 200)
 
     def test_detail_view_uses_proper_template(self):
         response = self.client.get('/pokedex/pokemon/bulbasaur/')
-
-        self.assertEqual(response.status_code, 200)
 
         html = response.content.decode('utf8')
         self.assertTrue(html.startswith('<!doctype html>'))
@@ -38,7 +43,6 @@ class DetailPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Hello on Pokedex app!', html)
         self.assertIn('Bulbasaur', html)
-        self.assertIn('Grass', html)
 
     def test_detail_view_uses_slugs(self):
         response = self.client.get('/pokedex/pokemon/squirtle/')
@@ -51,11 +55,13 @@ class SearchResultsPageTest(TestCase):
     def setUp(self):
         Pokemon.objects.create(name="Bulbasaur", category_1="grass")
         Pokemon.objects.create(name="Squirtle", category_1="water")
+    
+    def test_search_page_status_code(self):
+        response = self.client.get('/pokedex/search/?q=water')
+        self.assertEqual(response.status_code, 200)
 
     def test_search_view_uses_proper_template(self):
         response = self.client.get('/pokedex/search/?q=water')
-
-        self.assertEqual(response.status_code, 200)
 
         html = response.content.decode('utf8')
         self.assertTrue(html.startswith('<!doctype html>'))
@@ -63,6 +69,7 @@ class SearchResultsPageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Hello on Pokedex app!', html)
         self.assertIn('Squirtle', html)
+        self.assertNotIn('Bulbasaur', html)
 
 
 

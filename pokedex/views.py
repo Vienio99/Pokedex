@@ -16,7 +16,6 @@ class PokemonListView(ListView):
     paginate_by = 10
 
 
-
 class SearchResultsView(ListView):
     template_name = 'search_results.html'
     model = Pokemon
