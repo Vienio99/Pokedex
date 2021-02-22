@@ -22,11 +22,10 @@ class HomePageTest(TestCase):
         response = self.client.get('/pokedex/')
 
         html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTemplateUsed(response, 'home.html')
+        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertIn('Pokedex app', html)
-        self.assertIn('<title>Pokedex app</title>', html)
     
 
 class DetailPageTest(TestCase):
@@ -43,10 +42,9 @@ class DetailPageTest(TestCase):
         response = self.client.get('/pokedex/pokemon/bulbasaur/')
 
         html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTemplateUsed(response, 'pokemon_detail.html')
+        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTrue(html.strip().endswith('</html>'))
-        self.assertIn('Pokedex app', html)
         self.assertIn('Bulbasaur', html)
         self.assertIn('<title>Pokemon detail - Pokedex app</title>', html)
 
@@ -73,11 +71,9 @@ class SearchResultsPageTest(TestCase):
         response = self.client.get('/pokedex/search/?q=water')
 
         html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTemplateUsed(response, 'search_results.html')
+        self.assertTrue(html.startswith('<!doctype html>'))
         self.assertTrue(html.strip().endswith('</html>'))
-        self.assertIn('Pokedex app', html)
-        self.assertIn('Squirtle', html)
         self.assertNotIn('Bulbasaur', html)
         self.assertIn('<title>Search results - Pokedex app</title>', html)
 

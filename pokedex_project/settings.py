@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pokedex.apps.PokedexConfig',
     
     'crispy_forms',
+    'test_without_migrations',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+

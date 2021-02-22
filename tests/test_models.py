@@ -1,5 +1,5 @@
 from django.test import TestCase
-from pokedex.models import Pokemon
+from pokedex.models import Pokemon, Comment
 from django.contrib.auth import get_user_model
 
 
@@ -24,7 +24,26 @@ class PokemonModelTest(TestCase):
         self.assertNotEqual(pokemon.img, '/img/official-artwork/1.png')
         self.assertEqual(pokemon.img, '/img/official-artwork/2.png')
 
+class CommentModelTest(TestCase):
+    
+    def setUp(self):
+        Pokemon.objects.create(name='Bulbasaur')
+        User.objects.create(username='test')
+        User.objects.create(username='test2')
 
+        pokemon = Pokemon.objects.get(name='Bulbasaur')
+        user = User.objects.get(username='test')
+        user2 = User.objects.get(username='test2')
+        Comment.objects.create(pokemon=pokemon, comment='this pokemon is the best!', user=user)
+        Comment.objects.create(pokemon=pokemon, comment='i love bulbasaur', user=user)
+        Comment.objects.create(pokemon=pokemon, comment='my favourite pokemon!', user=user2)
+    
+    def test_comment_has_proper_author(self):
+        comments = Comment.objects.filter(user=1)
+        self.assertEqual(comments.count(), 2)
+
+        comment = Comment.objects.get(user=2)
+        self.assertEqual(comment.comment, 'my favourite pokemon!')
 
 
 User = get_user_model()
@@ -38,3 +57,4 @@ class CustomUserModelTest(TestCase):
         self.assertEqual(user.username, 'test')
         self.assertNotEqual(user.username, 'tesst')
         self.assertEqual(user.age, 15)
+

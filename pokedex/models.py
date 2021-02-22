@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 import os
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -37,4 +38,15 @@ class Pokemon(models.Model):
         if not self.img:
             self.img = f'/img/official-artwork/{self.id}.png'
             self.save()
-    
+
+class Comment(models.Model):
+
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=140)
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
