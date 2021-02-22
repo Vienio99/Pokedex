@@ -5,3 +5,4 @@ __pycache__
 *.pyc
 htmlcov
 db.sqlite3
+.env
