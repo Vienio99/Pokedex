@@ -41,7 +41,11 @@ class Pokemon(models.Model):
 
 class Comment(models.Model):
 
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+    pokemon = models.ForeignKey(
+        Pokemon, 
+        on_delete=models.CASCADE, 
+        related_name='comments',
+        )
     comment = models.CharField(max_length=140)
     user = models.ForeignKey(
         get_user_model(),
@@ -49,4 +53,4 @@ class Comment(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.comment

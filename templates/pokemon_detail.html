@@ -11,6 +11,12 @@
         <p>{{ pokemon.description }}</p>
         <img src="{% static pokemon.img %}" width=10% height=10%>
     </div>
+    <br>
+    Comments:
+    {% for comment in pokemon.comments.all %}
+            <p>{{ comment.user }}</p>
+            <p>{{ comment }}</p>
+    {% endfor %}
 
     <form>
         <input type="button" value="Go back!" onclick="history.back()">
