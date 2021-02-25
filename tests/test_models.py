@@ -1,6 +1,8 @@
 from django.test import TestCase
 from pokedex.models import Pokemon, Comment
 from django.contrib.auth import get_user_model
+from django.utils import timezone, dateformat
+from datetime import timedelta
 
 
 class PokemonModelTest(TestCase):
@@ -45,7 +47,11 @@ class CommentModelTest(TestCase):
         comment = Comment.objects.get(user=2)
         self.assertEqual(comment.comment, 'my favourite pokemon!')
 
-
+    def test_comment_has_proper_pub_date(self):
+        comment = Comment.objects.get(id=3)
+        print(timezone.now())
+        self.assertEqual(comment.pub_date.strftime('%m/%d/%Y, %H:%M:%S'), dateformat.format(timezone.now(), 'm/d/Y, H:i:s'))
+        
 User = get_user_model()
 class CustomUserModelTest(TestCase):
 

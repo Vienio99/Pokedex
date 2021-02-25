@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 import os
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 # Create your models here.
 
@@ -51,6 +52,7 @@ class Comment(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
+    pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.comment

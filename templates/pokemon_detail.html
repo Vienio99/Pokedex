@@ -14,7 +14,8 @@
     <br>
     Comments:
     {% for comment in pokemon.comments.all %}
-            <p>{{ comment.user }}</p>
+            <p>Author: {{ comment.user }}</p>
+            <p>Date published: {{ comment.pub_date }}</p>
             <p>{{ comment }}</p>
     {% endfor %}
 
