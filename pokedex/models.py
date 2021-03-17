@@ -54,5 +54,8 @@ class Comment(models.Model):
     )
     pub_date = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ['pub_date']
+
     def __str__(self):
         return self.comment

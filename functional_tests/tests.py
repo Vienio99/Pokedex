@@ -19,7 +19,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Pokedex app', self.browser.title)
 
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Hello on Pokedex app!', header_text)
+        self.assertIn('Pokedex app', header_text)
 
         search_box = self.browser.find_element_by_id('search')
         self.assertEqual(

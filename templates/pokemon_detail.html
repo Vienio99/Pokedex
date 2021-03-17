@@ -13,10 +13,16 @@
     </div>
     <br>
     Comments:
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post your comment">
+    </form>
+
     {% for comment in pokemon.comments.all %}
-            <p>Author: {{ comment.user }}</p>
-            <p>Date published: {{ comment.pub_date }}</p>
-            <p>{{ comment }}</p>
+        <p>Author: {{ comment.user }}</p>
+        <p>Date published: {{ comment.pub_date|date:"d M Y" }}</p>
+        <p>{{ comment }}</p>
     {% endfor %}
 
     <form>

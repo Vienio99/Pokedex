@@ -1,6 +1,7 @@
 from django.test import TestCase
-from pokedex.models import Pokemon
+from pokedex.models import Pokemon, Comment
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 # Create your tests here.
 
@@ -53,6 +54,21 @@ class DetailPageTest(TestCase):
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/pokedex/pokemon/1/')
         self.assertEqual(response.status_code, 404)
+    
+    def test_user_can_post_comment(self):
+        user = get_user_model()
+        user.objects.create_user(username='testuser', password='12345')
+        self.client.login(username='testuser', password='12345')
+        response = self.client.post('/pokedex/pokemon/bulbasaur/', data={'comment': 'Hello pokedex!'}, follow=True)
+        comment = Comment.objects.get(comment='Hello pokedex!')
+        self.assertTrue(response.status_code, 302)
+        self.assertIn('Hello pokedex!', response.content.decode())
+        self.assertEqual(comment.comment, 'Hello pokedex!')
+    
+    def test_user_get_redirected_if_is_not_authenticated(self):
+        response = self.client.post('/pokedex/pokemon/bulbasaur/', data={'comment': 'Hello pokedex!'}, follow=True)
+        self.assertEqual(response.status_code, 302)
+    
 
 class SearchResultsPageTest(TestCase):
 
@@ -63,9 +79,6 @@ class SearchResultsPageTest(TestCase):
     def test_search_page_status_code(self):
         response = self.client.get('/pokedex/search/?q=water')
         self.assertEqual(response.status_code, 200)
-
-        # response = reverse('search_results', args='water')
-        # self.assertEqual(response.status_code, 200)
 
     def test_search_view_uses_proper_template(self):
         response = self.client.get('/pokedex/search/?q=water')

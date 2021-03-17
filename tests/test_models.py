@@ -49,8 +49,12 @@ class CommentModelTest(TestCase):
 
     def test_comment_has_proper_pub_date(self):
         comment = Comment.objects.get(id=3)
-        print(timezone.now())
         self.assertEqual(comment.pub_date.strftime('%m/%d/%Y, %H:%M:%S'), dateformat.format(timezone.now(), 'm/d/Y, H:i:s'))
+    
+    def test_comments_have_proper_ordering(self):
+        comment1 = Comment.objects.get(id=1).pub_date
+        comment2 = Comment.objects.get(id=3).pub_date
+        self.assertGreater(comment2, comment1)
         
 User = get_user_model()
 class CustomUserModelTest(TestCase):
