@@ -1,0 +1,29 @@
+html {
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+navbar {
+    display: flex; 
+    justify-content: flex-end;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+}
+.pokemons-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pokemon-info {
+    flex-basis: 33.333333%;
+}

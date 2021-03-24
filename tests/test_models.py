@@ -55,6 +55,7 @@ class CommentModelTest(TestCase):
         comment1 = Comment.objects.get(id=1).pub_date
         comment2 = Comment.objects.get(id=3).pub_date
         self.assertGreater(comment2, comment1)
+
         
 User = get_user_model()
 class CustomUserModelTest(TestCase):

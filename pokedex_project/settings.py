@@ -43,8 +43,17 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pokedex.apps.PokedexConfig',
     
+    'livereload',
+    'django_sass_compiler',
+    'sass_processor',
     'crispy_forms',
     'test_without_migrations',
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'pokedex_project.urls'
@@ -128,6 +138,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 AUTH_USER_MODEL = 'users.CustomUser'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+
+
+
+
+#Authentication redirect
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'

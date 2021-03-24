@@ -65,9 +65,13 @@ class DetailPageTest(TestCase):
         self.assertIn('Hello pokedex!', response.content.decode())
         self.assertEqual(comment.comment, 'Hello pokedex!')
     
-    def test_user_get_redirected_if_is_not_authenticated(self):
-        response = self.client.post('/pokedex/pokemon/bulbasaur/', data={'comment': 'Hello pokedex!'}, follow=True)
+    def test_user_get_redirected_to_login_page_if_is_not_authenticated(self):
+        response = self.client.post('/pokedex/pokemon/bulbasaur/', data={'comment': 'Hello pokedex!'})
         self.assertEqual(response.status_code, 302)
+
+        response = self.client.post('/pokedex/pokemon/bulbasaur/', data={'comment': 'Hello pokedex!'}, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/login.html')
     
 
 class SearchResultsPageTest(TestCase):

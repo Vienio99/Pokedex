@@ -6,12 +6,15 @@
 
     <!-- Search form -->
     <form action="{% url 'search_results' %}" method="get">
-        <input name="q" type="text" placeholder="Search..." id="search">
+        <input name="q" type="text" placeholder="Search for pokemon..." id="search">
     </form>
 
-
+    <!-- Pagination -->
     <div class="pagination">
         <span class="step-links">
+
+
+
             <!-- Paginator top -->
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>
@@ -22,6 +25,9 @@
                 <a href="?page={{ page_obj.next_page_number }}">next</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
+
+
+
             <!-- Pokemons list -->
             <span class="current">
                 <div class="pokemons-list">
@@ -29,11 +35,14 @@
                         <div class="pokemon-info">
                             <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
                             <p>#00{{ pokemon.id }}</p>
-                            <a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a>
+                            <div><a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a></div>
                         </div>
                     {% endfor %}
                 </div>
             </span>
+
+
+
             <!-- Paginator bottom -->
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>

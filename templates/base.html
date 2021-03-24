@@ -1,15 +1,25 @@
-<!doctype html>
+{% load sass_tags %}
+
+<!DOCTYPE html>
 
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
 
     <title>{% block title %}Pokedex app{% endblock title %}</title>
+    <link href="{% sass_src 'css/base.scss' %}" rel="stylesheet" type="text/css" />
   </head>
 
+
   <body>
+
+
     <header>
       <h1><a href="{% url 'home' %}">Pokedex app</a></h1>
+    </header>
+
+    <navbar>
       {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <p><a href="{% url 'logout' %}">Log Out</a></p>
@@ -18,11 +28,14 @@
         <a href="{% url 'login' %}">Log In</a>
         <a href="{% url 'signup' %}">Sign Up</a>
       {% endif %}
-    </header>
-    <br>
-    <main>
+    </navbar>
+
+    <main class="site-content">
       {% block content %}
       {% endblock content %}
     </main>
+
+
   </body>
+
 </html>

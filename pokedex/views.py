@@ -44,8 +44,12 @@ class PokemonDetail(View):
         return view(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        view = PokemonCommentFormView.as_view()
-        return view(request, *args, **kwargs)
+
+        if request.user.is_authenticated:
+            view = PokemonCommentFormView.as_view()
+            return view(request, *args, **kwargs)
+        else:
+            return redirect('login')
 
 class PokemonDetailView(DetailView):
     template_name = 'pokemon_detail.html'
