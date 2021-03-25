@@ -19,14 +19,14 @@ class PokemonListView(ListView):
     template_name = 'home.html'
     model = Pokemon
     context_object_name = 'pokemons_data'
-    paginate_by = 10
+    paginate_by = 9
 
 
 class SearchResultsView(ListView):
     template_name = 'search_results.html'
     model = Pokemon
     context_object_name = 'search_results'
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         

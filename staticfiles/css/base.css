@@ -1,15 +1,32 @@
 html {
-  margin-left: 250px;
-  margin-right: 250px; }
+  margin-left: 300px;
+  margin-right: 300px; }
+
+a {
+  text-decoration: none; }
 
 header {
   display: flex;
   justify-content: center;
   align-items: center; }
+  header .logo {
+    width: 75%;
+    text-align: center; }
 
-navbar {
+.navbar-right {
   display: flex;
   justify-content: flex-end; }
+
+.navbar-left {
+  display: flex;
+  justify-content: space-around; }
+  .navbar-left .search-bar {
+    margin-right: auto; }
+  .navbar-left .pagination a {
+    font-size: 20px;
+    color: #c7a008;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    align-self: center; }
 
 img {
   width: 50%;
@@ -17,10 +34,10 @@ img {
 
 .pokemons-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
+  flex-wrap: wrap; }
 
 .pokemon-info {
-  flex-basis: 33.333333%; }
+  flex-basis: 33.333333%;
+  text-align: center; }
 
 /*# sourceMappingURL=base.css.map */

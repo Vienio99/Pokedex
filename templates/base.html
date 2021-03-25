@@ -1,4 +1,5 @@
 {% load sass_tags %}
+{% load static %}
 
 <!DOCTYPE html>
 
@@ -16,10 +17,10 @@
 
 
     <header>
-      <h1><a href="{% url 'home' %}">Pokedex app</a></h1>
+      <div class="logo"><a href="{% url 'home' %}"><img src="/static/img/official-artwork/front.png" width=150%></a></div>
     </header>
 
-    <navbar>
+    <div class="navbar-right">
       {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <p><a href="{% url 'logout' %}">Log Out</a></p>
@@ -28,7 +29,7 @@
         <a href="{% url 'login' %}">Log In</a>
         <a href="{% url 'signup' %}">Sign Up</a>
       {% endif %}
-    </navbar>
+    </div>
 
     <main class="site-content">
       {% block content %}

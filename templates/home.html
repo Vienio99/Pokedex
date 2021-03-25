@@ -4,28 +4,31 @@
 
 {% block content %}
 
-    <!-- Search form -->
-    <form action="{% url 'search_results' %}" method="get">
-        <input name="q" type="text" placeholder="Search for pokemon..." id="search">
-    </form>
+    <div class="navbar-left">
+        <!-- Search form -->
+        <form action="{% url 'search_results' %}" method="get" class="search-bar">
+            <input name="q" type="text" placeholder="Search for pokemon..." id="search">
+        </form>
 
-    <!-- Pagination -->
-    <div class="pagination">
-        <span class="step-links">
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="step-links">
 
 
 
-            <!-- Paginator top -->
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-            
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-
+                <!-- Paginator top -->
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 
 
             <!-- Pokemons list -->
@@ -33,36 +36,15 @@
                 <div class="pokemons-list">
                     {% for pokemon in pokemons_data %}
                         <div class="pokemon-info">
-                            <h2><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
-                            <p>#00{{ pokemon.id }}</p>
-                            <div><a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}" width=10% height=10%></a></div>
+                            <div class="name-id">
+                                <h2 class="pokemon-name"><a href="{{ pokemon.get_absolute_url }}">{{ pokemon.name | title }}</a></h2>
+                                <p class="pokemon-id">#00{{ pokemon.id }}</p>
+                            </div>
+                            <div><a href="{{ pokemon.get_absolute_url }}"><img src="{% static pokemon.img %}"></a></div>
                         </div>
                     {% endfor %}
                 </div>
             </span>
-
-
-
-            <!-- Paginator bottom -->
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-            
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-
-
-
-
-
-
-
-
 
 
 
