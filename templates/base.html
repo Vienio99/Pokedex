@@ -10,6 +10,9 @@
 
     <title>{% block title %}Pokedex app{% endblock title %}</title>
     <link href="{% sass_src 'css/base.scss' %}" rel="stylesheet" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap" rel="stylesheet">
   </head>
 
 
@@ -22,12 +25,12 @@
 
     <div class="navbar-right">
       {% if user.is_authenticated %}
-        Hi {{ user.username }}!
+        <p>Hi {{ user.username }}!</p>
         <p><a href="{% url 'logout' %}">Log Out</a></p>
       {% else %}
         <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
-        <a href="{% url 'signup' %}">Sign Up</a>
+        <p><a href="{% url 'login' %}">Log In</a></p>
+        <p><a href="{% url 'signup' %}">Sign Up</a></p>
       {% endif %}
     </div>
 

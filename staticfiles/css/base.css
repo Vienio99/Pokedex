@@ -1,6 +1,7 @@
 html {
   margin-left: 300px;
-  margin-right: 300px; }
+  margin-right: 300px;
+  font-family: 'Lexend', sans-serif; }
 
 a {
   text-decoration: none; }
@@ -18,15 +19,28 @@ header {
   justify-content: flex-end; }
 
 .navbar-left {
-  display: flex;
-  justify-content: space-around; }
+  display: flex; }
   .navbar-left .search-bar {
-    margin-right: auto; }
+    flex: 1; }
+  .navbar-left .third {
+    flex: 1; }
   .navbar-left .pagination a {
+    font-weight: bold;
     font-size: 20px;
-    color: #c7a008;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-    align-self: center; }
+    color: #ffcb05;
+    text-shadow: 2px 0 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb, -1px 0 0 #2a75bb; }
+
+.navbar-right {
+  display: flex;
+  flex-direction: column; }
+  .navbar-right p {
+    margin: 5px;
+    margin-left: auto; }
+  .navbar-right a {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffcb05;
+    text-shadow: 2px 0 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb, -1px 0 0 #2a75bb; }
 
 img {
   width: 50%;
@@ -35,9 +49,26 @@ img {
 .pokemons-list {
   display: flex;
   flex-wrap: wrap; }
+  .pokemons-list .pokemon-info {
+    flex-basis: 33.333333%;
+    text-align: center; }
+    .pokemons-list .pokemon-info .pokemon-name a {
+      font-size: 30px;
+      color: #ffcb05;
+      text-shadow: 2px 0 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb, -1px 0 0 #2a75bb; }
 
-.pokemon-info {
-  flex-basis: 33.333333%;
-  text-align: center; }
+.pokemon-detail .pokemon-img {
+  width: 30%;
+  height: 50%; }
+
+.pokemon-detail .types {
+  display: flex;
+  width: 10%;
+  height: 10%; }
+
+.pokemon-detail h2 {
+  font-size: 30px;
+  color: #ffcb05;
+  text-shadow: 2px 0 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb, -1px 0 0 #2a75bb; }
 
 /*# sourceMappingURL=base.css.map */

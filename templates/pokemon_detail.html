@@ -7,9 +7,14 @@
     <div class="pokemon-detail">
         <p>#00{{ pokemon.id }}</p>
         <h2>{{ pokemon.name | title }}</h2>
-        <p>{{ pokemon.category_1 | title }} {{ pokemon.category_2 | title }}</p>
+        <div class="types">
+            <img src="/static/img/types/{{ pokemon.category_1 }}.png">
+            {% if pokemon.category_2 %}
+                <img src="/static/img/types/{{ pokemon.category_2 }}.png">
+            {% endif %}
+        </div>
         <p>{{ pokemon.description }}</p>
-        <img src="{% static pokemon.img %}" width=10% height=10%>
+        <img src="{% static pokemon.img %}" class="pokemon-img">
     </div>
     <br>
     Comments:

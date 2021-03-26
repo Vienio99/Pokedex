@@ -6,8 +6,9 @@
 
     <div class="navbar-left">
         <!-- Search form -->
-        <form action="{% url 'search_results' %}" method="get" class="search-bar">
-            <input name="q" type="text" placeholder="Search for pokemon..." id="search">
+        <form action="{% url 'search_results' %}" method="get" class="search-bar" id="search-form">
+            <input name="q" type="text" placeholder="Search for pokemon..." id="search" required>
+            <button type="submit" form="search-form" value="Submit">Search!</button>
         </form>
 
         <!-- Pagination -->
@@ -28,6 +29,7 @@
                 {% endif %}
             </span>
         </div>
+        <div class="third"></div>
     </div>
 
 
