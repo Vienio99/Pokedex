@@ -22,6 +22,13 @@ header {
   display: flex; }
   .navbar-left .search-bar {
     flex: 1; }
+  .navbar-left .search-box {
+    border: 2px solid #2a75bb;
+    border-radius: 9px;
+    padding: 8px; }
+  .navbar-left .search-box:focus {
+    text-decoration: none;
+    outline: none; }
   .navbar-left .third {
     flex: 1; }
   .navbar-left .pagination a {
@@ -44,7 +51,11 @@ header {
 
 img {
   width: 50%;
-  height: 50%; }
+  height: 50%;
+  transition-duration: 0.3s; }
+
+img:hover {
+  transform: translateY(-3px); }
 
 .pokemons-list {
   display: flex;
@@ -70,5 +81,32 @@ img {
   font-size: 30px;
   color: #ffcb05;
   text-shadow: 2px 0 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb, -1px 0 0 #2a75bb; }
+
+.comment-form {
+  border: 2px solid #2a75bb;
+  border-radius: 9px;
+  padding: 8px; }
+
+.comment {
+  border-bottom: 1px solid #999;
+  margin-bottom: 5px; }
+  .comment .author {
+    font-weight: bold; }
+
+.button {
+  color: #ffcb05;
+  background-color: #3686d1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  border-radius: 9px;
+  padding: 8px;
+  display: inline-block;
+  border: 2px solid #ffcb05;
+  transition-duration: 0.2s; }
+
+.button:active {
+  background-color: #1b5183;
+  transform: translateY(1px); }
 
 /*# sourceMappingURL=base.css.map */
