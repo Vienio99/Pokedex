@@ -16,7 +16,7 @@
     <li>HTML</li>
     <li>SCSS</li>
   </ul> 
-<h3>Technologies</h3>
+<h3>Tools</h3>
   <ul>
     <li>Visual Studio Code</li>
     <li>Linux Terminal</li>
