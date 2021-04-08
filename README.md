@@ -30,9 +30,9 @@
     <li><a href="https://django-crispy-forms.readthedocs.io/en/latest/">Crispy forms</a></li>
     <li><a href="https://pypi.org/project/django-test-without-migrations/">Django test without migrations</a></li>
   </ul> 
-<h2>Home page image</h2>
+<h2>Home page</h2>
 <img src="homePage.png"></img>
-<h2>Detail page image</h2>
+<h2>Detail page</h2>
 <img src="detailPage.png"></img>
 <h2>Author</h2>
 <p><a href="https://github.com/Vienio99">Vienio99</a></p>
